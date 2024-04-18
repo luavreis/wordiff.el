@@ -31,7 +31,7 @@ etc. Use nil to compare against index.")
       (setq wordiff-revision ans)))
   (wordiff-update))
 
-(defvar wordiff-word-regex "[^[:space:][:punct:]]+|."
+(defvar wordiff-word-regex "[^[:space:][:punct:]]*."
   "Word regex to be passed as `--word-diff-regex' to `git diff' process.
 Loosely speaking, every individual match for this regex is
 considered to be an individual word (or group) for the diff
