@@ -43,9 +43,11 @@ Check `git diff --help | grep word-diff-regex' for more
 information.")
 
 (defsubst wordiff--diff-process-buffer (curfile)
+  "Buffer for the wordiff process of file CURFILE."
   (concat "*wordiff-" curfile "-*"))
 
 (defsubst wordiff--start-process (proc-buf file)
+  "Start git process at PROC-BUF in relation to FILE."
   (call-process-shell-command
    (string-join
     (list "git diff"
@@ -66,6 +68,7 @@ information.")
       " @@"))
 
 (defun wordiff--process-diff-output (buf refbuf)
+  "Process git output at BUF and apply to REFBUF."
   (when (buffer-live-p buf)
     (with-current-buffer buf
       (goto-char (point-min))
