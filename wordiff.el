@@ -200,8 +200,10 @@ Display word diff overlays in the buffer."
       (progn
         (wordiff-update)
         (add-hook 'after-save-hook #'wordiff-update nil t)
+        (add-hook 'before-revert-hook #'wordiff-clean-overlays nil t)
         (add-hook 'after-revert-hook #'wordiff-update nil t))
     (remove-hook 'after-save-hook #'wordiff-update t)
+    (remove-hook 'before-revert-hook #'wordiff-clean-overlays t)
     (remove-hook 'after-revert-hook #'wordiff-update t)
     (wordiff-clean-overlays)))
 
