@@ -4,7 +4,7 @@
 ;; Maintainer: Lucas Viana Reis <lvreis@usp.br>
 ;; URL: https://github.com/lucasvreis/wordiff
 ;; Version: 0.1
-;; Package-Requires: ((emacs "26.1"))
+;; Package-Requires: ((emacs "26.1") (magit "0"))
 
 ;;; Commentary:
 ;; This library leverages `git diff' in `wordiff' mode in order to display diffs
