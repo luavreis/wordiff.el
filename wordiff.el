@@ -16,10 +16,25 @@
 (require 'cl-lib)
 (require 'magit-git)
 
-(defvar-local wordiff-revision nil
+(defcustom wordiff-revision nil
   "Revision to diff buffer content against.
 Note that this can be any revision: commit name, branch name,
-etc. Use nil to compare against index.")
+etc. Use nil to compare against index."
+  :type '(choice string (const nil))
+  :group 'wordiff)
+
+(defcustom wordiff-word-regex ".[^[:space:][:punct:]]*"
+  "Word regex to be passed as `--word-diff-regex' to `git diff' process.
+Loosely speaking, every individual match for this regex is
+considered to be an individual word (or group) for the diff
+algorithm. Be sure to use a regex that matches all characters in
+the buffer, otherwise Wordiff's revert functionality may miss
+some characters as well.
+
+Check `git diff --help | grep word-diff-regex' for more
+information."
+  :type 'string
+  :group 'wordiff)
 
 (defun wordiff-choose-revision ()
   "Set `wordiff-revision' interactively."
@@ -30,17 +45,6 @@ etc. Use nil to compare against index.")
         (setq wordiff-revision nil)
       (setq wordiff-revision ans)))
   (wordiff-update))
-
-(defvar wordiff-word-regex ".[^[:space:][:punct:]]*"
-  "Word regex to be passed as `--word-diff-regex' to `git diff' process.
-Loosely speaking, every individual match for this regex is
-considered to be an individual word (or group) for the diff
-algorithm. Be sure to use a regex that matches all characters in
-the buffer, otherwise Wordiff's revert functionality may miss
-some characters as well.
-
-Check `git diff --help | grep word-diff-regex' for more
-information.")
 
 (defsubst wordiff--diff-process-buffer (curfile)
   "Buffer for the wordiff process of file CURFILE."
