@@ -21,6 +21,7 @@
 Note that this can be any revision: commit name, branch name,
 etc. Use nil to compare against index."
   :type '(choice string (const nil))
+  :local t
   :group 'wordiff)
 
 (defcustom wordiff-word-regex ".[^[:space:][:punct:]]*"
@@ -212,6 +213,7 @@ Display word diff overlays in the buffer."
     (wordiff-clean-overlays)))
 
 (defvar-local wordiff--overlays nil)
+(define-symbol-prop 'wordiff--overlays 'permanent-local t)
 
 (defun wordiff-clean-overlays ()
   "Remove all Wordiff overlays."
