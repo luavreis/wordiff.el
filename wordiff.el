@@ -2,7 +2,7 @@
 
 ;; Author: Lucas Viana Reis <lvreis@usp.br>
 ;; Maintainer: Lucas Viana Reis <lvreis@usp.br>
-;; URL: https://github.com/lucasvreis/wordiff
+;; URL: https://github.com/lucasvreis/wordiff.el
 ;; Version: 0.1
 ;; Package-Requires: ((emacs "26.1") (magit "0"))
 
